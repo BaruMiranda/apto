@@ -44,7 +44,7 @@ fun MainScreen() {
         when (selectedIndex) {
             0 -> HomeScreen()
             1 -> TvScreen(onPlayChannel = { playingChannel = it })
-            2 -> SoccerScreen()
+            2 -> SoccerScreen(onPlayChannel = { playingChannel = it })
             3 -> ProfileScreen()
         }
 
