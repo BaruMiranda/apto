@@ -14,7 +14,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import org.barcode.apptv.components.TvChannelListPanel
 import org.barcode.apptv.components.TvErrorBanner
-import org.barcode.apptv.components.TvHeader
+import org.barcode.apptv.components.AppHeader
 import org.barcode.apptv.theme.DarkBackground
 import org.barcode.apptv.theme.Gold
 import org.barcode.apptv.ui.tv.model.TvChannelLive
@@ -32,7 +32,7 @@ fun TvScreen(
             .fillMaxSize()
             .background(DarkBackground)
     ) {
-        TvHeader()
+        AppHeader(section = "En Vivo", showLiveBadge = true)
 
         state.errorMessage?.let { msg ->
             TvErrorBanner(

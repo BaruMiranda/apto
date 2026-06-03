@@ -15,7 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import org.barcode.apptv.components.GenreGrid
 import org.barcode.apptv.components.HeroBanner
-import org.barcode.apptv.components.HomeHeader
+import org.barcode.apptv.components.AppHeader
 import org.barcode.apptv.components.HorizontalLiveChannelList
 import org.barcode.apptv.components.HorizontalMovieList
 import org.barcode.apptv.components.SectionTitle
@@ -33,7 +33,7 @@ fun HomeScreen(
             .verticalScroll(scrollState)
             .padding(bottom = 100.dp)
     ) {
-        HomeHeader(userName = uiState.userName)
+        AppHeader(section = "Inicio")
 
         HeroBanner(
             title  = uiState.heroBannerTitle,
