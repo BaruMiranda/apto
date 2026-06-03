@@ -1,5 +1,6 @@
 package org.barcode.apptv.ui.soccer
 
+import androidx.compose.ui.graphics.Color
 import org.barcode.apptv.ui.tv.model.TvChannelLive
 
 data class SoccerUiState(
@@ -9,5 +10,6 @@ data class SoccerUiState(
 
 data class SoccerLeague(
     val name: String,
-    val emoji: String,
+    val shortName: String,
+    val color: Color,
 )

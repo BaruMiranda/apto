@@ -23,6 +23,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.LiveTv
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -79,7 +80,7 @@ fun SoccerScreen(
                 .verticalScroll(rememberScrollState())
                 .padding(bottom = 100.dp)
         ) {
-            // ── Carrusel principal ──
+            // ── Carrusel ──
             HorizontalPager(
                 state    = pagerState,
                 modifier = Modifier.fillMaxWidth(),
@@ -116,7 +117,7 @@ fun SoccerScreen(
                 }
             }
 
-            // ── Grid de ligas ──
+            // ── Ligas & Copas ──
             SectionTitle("LIGAS & COPAS")
             Spacer(Modifier.height(12.dp))
 
@@ -165,7 +166,7 @@ private fun ChannelCarouselCard(
                 )
         )
 
-        // Badge EN VIVO
+        // Badge EN VIVO (Material Icon inline — sin emoji)
         Row(
             modifier              = Modifier
                 .align(Alignment.TopStart)
@@ -180,13 +181,18 @@ private fun ChannelCarouselCard(
             Text("EN VIVO", color = Color.White, fontSize = 9.sp, fontWeight = FontWeight.Bold)
         }
 
-        // Centro: emoji + nombre
+        // Centro: icono + nombre (sin emoji, todo Compose-rendered)
         Column(
             modifier            = Modifier.align(Alignment.Center),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(6.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
-            Text(channel.emoji, fontSize = 44.sp)
+            Icon(
+                imageVector        = Icons.Default.LiveTv,
+                contentDescription = null,
+                tint               = Gold.copy(alpha = 0.85f),
+                modifier           = Modifier.size(52.dp),
+            )
             Text(
                 channel.name,
                 color         = Color.White,
@@ -201,7 +207,7 @@ private fun ChannelCarouselCard(
             )
         }
 
-        // Botón play (abajo derecha)
+        // Botón play
         Box(
             modifier = Modifier
                 .align(Alignment.BottomEnd)
@@ -236,15 +242,31 @@ private fun LeagueCard(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(6.dp),
     ) {
-        Text(league.emoji, fontSize = 26.sp)
+        // Badge de color con sigla — sin emoji, 100% Compose
+        Box(
+            modifier = Modifier
+                .size(36.dp)
+                .clip(CircleShape)
+                .background(league.color.copy(alpha = 0.2f))
+                .border(1.5.dp, league.color.copy(alpha = 0.7f), CircleShape),
+            contentAlignment = Alignment.Center,
+        ) {
+            Text(
+                league.shortName,
+                color      = league.color,
+                fontSize   = if (league.shortName.length > 3) 6.sp else 8.sp,
+                fontWeight = FontWeight.Bold,
+                textAlign  = TextAlign.Center,
+            )
+        }
         Text(
             league.name,
-            color     = Color.White,
-            fontSize  = 10.sp,
+            color      = Color.White,
+            fontSize   = 10.sp,
             fontWeight = FontWeight.SemiBold,
-            textAlign = TextAlign.Center,
-            maxLines  = 2,
-            overflow  = TextOverflow.Ellipsis,
+            textAlign  = TextAlign.Center,
+            maxLines   = 2,
+            overflow   = TextOverflow.Ellipsis,
         )
     }
 }
